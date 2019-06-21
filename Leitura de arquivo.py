@@ -8,20 +8,20 @@ Created on Tue May 21 07:51:07 2019
 
 import numpy as np
 
-with open('C:\\Users\\05873472955\\Desktop\\A.txt') as arquivo:
+with open('C:\\Users\\CLIENTE\\Desktop\\Jogos, Filmes, Etc. v5\\Estudos 2.0\\LabMatComp\A.txt') as arquivo:
     dados = arquivo.readlines()
     
 dados.remove(dados[1001])
 dados.remove(dados[1000])
 
-matriz = []
+A = []
 for linha in dados:
-    matriz.append(linha.rstrip('\n').lstrip(' ').split(' '))
+    A.append(linha.rstrip('\n').lstrip(' ').split(' '))
     
-matriz = np.asarray(matriz, dtype=np.float64)
+A = np.asarray(A, dtype=np.float64)
 
 
-with open('C:\\Users\\05873472955\\Desktop\\B.txt') as arquivoB:
+with open('C:\\Users\\CLIENTE\\Desktop\\Jogos, Filmes, Etc. v5\\Estudos 2.0\\LabMatComp\B.txt') as arquivoB:
     dadosB = arquivoB.readlines()
     
 dadosB.remove(dadosB[1507])
@@ -29,18 +29,18 @@ dadosB.remove(dadosB[1506])
 dadosB.remove(dadosB[1505])
 dadosB.remove(dadosB[1504])
 
-matrizB = []
+B = []
 for linha in dadosB:
-    matrizB.append(linha.rstrip('\n').lstrip(' ').split(' '))
+    B.append(linha.rstrip('\n').lstrip(' ').split(' '))
     
 i = 0
-while i < len(matrizB):
-    if len(matrizB[i]) != 1000:
-        matrizB.pop(i)
+while i < len(B):
+    if len(B[i]) != 1000:
+        B.pop(i)
     else:
         i = i+1
     
-matrizB = np.asarray(matrizB, dtype=np.float64)
+B = np.asarray(B, dtype=np.float64)
     
     
 def Kron(A,B):
@@ -54,6 +54,17 @@ def Kron(A,B):
             for Aj in range(n):
                 for Bj in range(q):
                     C[Ai*p+Bi,Aj*q+Bj] = A[Ai,Aj]*B[Bi,Bj]
+    return C
 
-s = ''
-s.join('')
+C = Kron(A,B)
+
+
+s = list(C)
+for i in range(len(s)):
+    s[i] = list(s[i])
+s = str(s)
+s = s.rstrip(']').replace(']','\n').replace('.0','').replace(',','').replace('[','')
+
+arquivoC = open('C:\\Users\\CLIENTE\\Desktop\\Jogos, Filmes, Etc. v5\\Estudos 2.0\\LabMatComp\C.txt','w+')
+arquivoC.write(s)
+arquivoC.close()
