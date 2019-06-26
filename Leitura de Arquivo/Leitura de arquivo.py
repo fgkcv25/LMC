@@ -56,6 +56,7 @@ B = np.asarray(B, dtype=np.float64)
 #                    C[Ai*p+Bi,Aj*q+Bj] = A[Ai,Aj]*B[Bi,Bj]
 #    return C
 
+#FAZER A MULTIPLICAÇÃO ESCREVER LINHA DE A POR LINHA DE A
 def Kron(A,B):
     (m,n) = A.shape
     (p,q) = B.shape
