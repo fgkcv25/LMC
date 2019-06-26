@@ -8,7 +8,7 @@ Created on Tue May 21 07:51:07 2019
 
 import numpy as np
 
-with open('C:\\Users\\CLIENTE\\Desktop\\Jogos, Filmes, Etc. v5\\Estudos 2.0\\LabMatComp\A.txt') as arquivo:
+with open('C:\\Users\\05873472955\\Downloads\\LMC\\LMC\\Leitura de Arquivo\\A.txt') as arquivo:
     dados = arquivo.readlines()
     
 dados.remove(dados[1001])
@@ -21,7 +21,7 @@ for linha in dados:
 A = np.asarray(A, dtype=np.float64)
 
 
-with open('C:\\Users\\CLIENTE\\Desktop\\Jogos, Filmes, Etc. v5\\Estudos 2.0\\LabMatComp\B.txt') as arquivoB:
+with open('C:\\Users\\05873472955\\Downloads\\LMC\\LMC\\Leitura de Arquivo\\B.txt') as arquivoB:
     dadosB = arquivoB.readlines()
     
 dadosB.remove(dadosB[1507])
@@ -43,28 +43,38 @@ while i < len(B):
 B = np.asarray(B, dtype=np.float64)
     
     
+#def Kron(A,B):
+#    (m,n) = A.shape
+#    (p,q) = B.shape
+#    
+#    C = np.zeros((m*p,n*q))
+#    
+#    for Ai in range(m):
+#        for Bi in range(p):
+#            for Aj in range(n):
+#                for Bj in range(q):
+#                    C[Ai*p+Bi,Aj*q+Bj] = A[Ai,Aj]*B[Bi,Bj]
+#    return C
+
 def Kron(A,B):
     (m,n) = A.shape
     (p,q) = B.shape
-    
-    C = np.zeros((m*p,n*q))
-    
-    for Ai in range(m):
-        for Bi in range(p):
-            for Aj in range(n):
-                for Bj in range(q):
-                    C[Ai*p+Bi,Aj*q+Bj] = A[Ai,Aj]*B[Bi,Bj]
+    C = []
+    for i in range(m*p):
+        Ci = []
+        for Aj in range(n):
+            for Bj in range(q):
+                Ci.append(A[int(i/p),Aj]*B[i%p,Bj])
+        C.append(Ci)
     return C
 
-C = Kron(A,B)
-
-
-s = list(C)
+s = Kron(A,B)
+    
 for i in range(len(s)):
     s[i] = list(s[i])
 s = str(s)
 s = s.rstrip(']').replace(']','\n').replace('.0','').replace(',','').replace('[','')
 
-arquivoC = open('C:\\Users\\CLIENTE\\Desktop\\Jogos, Filmes, Etc. v5\\Estudos 2.0\\LabMatComp\C.txt','w+')
+arquivoC = open('C:\\Users\\05873472955\\Downloads\\LMC\\LMC\\Leitura de Arquivo\\C.txt','w+')
 arquivoC.write(s)
 arquivoC.close()
