@@ -43,39 +43,26 @@ while i < len(B):
 B = np.asarray(B, dtype=np.float64)
     
     
-#def Kron(A,B):
-#    (m,n) = A.shape
-#    (p,q) = B.shape
-#    
-#    C = np.zeros((m*p,n*q))
-#    
-#    for Ai in range(m):
-#        for Bi in range(p):
-#            for Aj in range(n):
-#                for Bj in range(q):
-#                    C[Ai*p+Bi,Aj*q+Bj] = A[Ai,Aj]*B[Bi,Bj]
-#    return C
-
-#FAZER A MULTIPLICAÇÃO ESCREVER LINHA DE A POR LINHA DE A
-def Kron(A,B):
-    (m,n) = A.shape
-    (p,q) = B.shape
-    C = []
-    for i in range(m*p):
-        Ci = []
+arquivoC = open('C:\\Users\\05873472955\\Downloads\\LMC\\LMC\\Leitura de Arquivo\\C.txt','w+')
+(m,n) = A.shape
+(p,q) = B.shape
+    
+C = np.zeros((p,n*q))
+    
+for Ai in range(m):
+    for Bi in range(p):
         for Aj in range(n):
             for Bj in range(q):
-                Ci.append(A[int(i/p),Aj]*B[i%p,Bj])
-        C.append(Ci)
-    return C
-
-s = Kron(A,B)
+                C[Bi,Aj*q+Bj] = A[Ai,Aj]*B[Bi,Bj]
+    s = list(C)
+    for i in range(len(s)):
+        s[i] = list(s[i])
+    s = str(s)
+    s = s.rstrip(']').replace(']','\n').replace('.0','').replace(',','').replace('[','')
+    arquivoC.write(s)
     
-for i in range(len(s)):
-    s[i] = list(s[i])
-s = str(s)
-s = s.rstrip(']').replace(']','\n').replace('.0','').replace(',','').replace('[','')
-
-arquivoC = open('C:\\Users\\05873472955\\Downloads\\LMC\\LMC\\Leitura de Arquivo\\C.txt','w+')
-arquivoC.write(s)
 arquivoC.close()
+
+
+    
+
