@@ -5,21 +5,22 @@ Created on Sat Jun 29 22:07:42 2019
 @author: CLIENTE
 """
 
+#pega o heroi.txt
 with open('C:\\Users\\CLIENTE\\Desktop\\heroi.txt','r',encoding='utf8') as arquivo:
     dados = arquivo.readlines()
-
 for i in range(len(dados)):
     dados[i] = dados[i].rstrip('\n').split(';')
 
+#cria o arquivo.tex
 latex = open('C:\\Users\\CLIENTE\\Desktop\\Relações Aluno-Nota.tex','w+')
-latex.write('\\documentclass[12pt]{article} \n')
-latex.write('\\usepackage[utf8]{inputenc} \n')
-latex.write('\\usepackage{pgfplots}')
-latex.write('\\begin{document} \n')
-latex.write('\\section*{Tabela com as médias de cada aluno} \n')
-latex.write('\\begin{tabular}{c|c} \n')
-latex.write('Nome & Sobrenome \\\\ \n')
-latex.write('\\hline \n')
+latex.write('\\documentclass[12pt]{article} \n \
+            \\usepackage[utf8]{inputenc} \n \
+            \\usepackage{pgfplots} \
+            \\begin{document} \n \
+            \\section*{Tabela com as médias de cada aluno} \n \
+            \\begin{tabular}{c|c} \n \
+            Nome & Sobrenome \\\\ \n \
+            \\hline \n')
 #escolhi botar aquela expressão para a média das notas dos alunos pois ela é a
 #que mais se assemelha ao sistema da ufsc de arredondamento,
 #e também porque caso eu não arredondasse os números possuiriam muitas casas
@@ -34,8 +35,8 @@ for prova in range(2,5):
     latex.write('\\begin{center}\\begin{tikzpicture}\\begin{axis}[xbar,enlargelimits=0.10,width = \\textwidth,ytick=data,height=15cm,legend style={at={(0.5,-0.08)},anchor=north,legend columns=-1},xlabel={Nota},symbolic y coords={')
     for i in range(1,len(dados)):
         latex.write('{} {},'.format(dados[i][0],dados[i][1]))
-    latex.write('}] \n')
-    latex.write('\\addplot coordinates {')
+    latex.write('}] \n \
+    \\addplot coordinates {')
     for i in range(1,len(dados)):
         latex.write('({},{} {}) '.format(dados[i][prova],dados[i][0],dados[i][1]))
     latex.write('}; \n')
@@ -51,8 +52,8 @@ latex.write('}] \n')
 latex.write('\\addplot coordinates {')
 for i in range(1,len(dados)):
     latex.write('({},{} {}) '.format(round((2*(float(dados[i][2])+float(dados[i][3])+float(dados[i][4]))/3)/2),dados[i][0],dados[i][1]))
-latex.write('}; \n')
-latex.write('\\legend{{Média das provas}}\n')
-latex.write('\\end{axis} \n \\end{tikzpicture} \\end{center} \n')
-latex.write('\\end{document}')
+latex.write('}; \n \
+\\legend{{Média das provas}}\n \
+\\end{axis} \n \\end{tikzpicture} \\end{center} \n \
+\\end{document}')
 latex.close()
