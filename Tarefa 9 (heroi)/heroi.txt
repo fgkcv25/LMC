@@ -1,0 +1,12 @@
+﻿Nome;Sobrenome;Prova 1;Prova 2;Prova 3
+Mickey;Mouse;6.0;7.8;7.5
+Zé;Carioca;8.7;9.3;7.5
+Penélope;Charmosa;7.0;6.8;8.3
+Bruce;Wayne;10;9;8.4
+Clark;Kent;5.0;4.3;5.2
+Olívia;Palito;3.5;6.8;8.0
+Marge;Simpson;7.8;10;8.2
+Eric;Cartman;0.5;1.6;4.2
+Peter;Parker;4.8;8.5;10
+Luke;Skywalker;9.5;5.6;8.2
+Harry;Potter;6.5;7.8;5.1
